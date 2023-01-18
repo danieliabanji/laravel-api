@@ -34,7 +34,7 @@
             <div class="d-flex">
                 <div class="media me-4">
                     <img class="shadow" width="150" src="{{ asset('storage/' . $project->cover_image) }}"
-                        alt="{{ $project->title }}">
+                        alt="{{ $project->cover_image }}">
                 </div>
                 <div class="mb-3">
                     <label for="cover_image" class="form-label">Replace project image</label>
@@ -45,6 +45,16 @@
                     @enderror
                 </div>
             </div>
+
+            <div class="mb-3">
+                <label for="git_link" class="form-label">Git</label>
+                <input type="text" class="form-control @error('git_link') is-invalid @enderror" id="git_link"
+                    name="git_link" value="{{ old('name', $project->git_link) }}">
+                @error('git_link')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
             <div class="mb-3">
                 <label for="type_id" class="form-label">Select Type</label>
                 <select name="type_id" id="type_id" class="form-control @error('type_id') is-invalid @enderror">

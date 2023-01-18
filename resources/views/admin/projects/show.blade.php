@@ -24,8 +24,10 @@
             </div>
         </div>
         <div class="my-3">
-            <a href="{{ url($project->git_link) }}">{{ $project->git_link }}</a>
-            {{-- <p>{{ $project->git_link }}</p> --}}
+            @if ($project->git_link)
+                <a href="{{ url($project->git_link) }}">{{ $project->git_link }}</a>
+            @endif
+            {{-- <a href="{{ url($project->git_link) }}">{{ $project->git_link }}</a> --}}
         </div>
         <div>
 
@@ -33,21 +35,27 @@
         </div>
 
         <div class="my-3">
-            <h5>Tags</h5>
+
             @if ($project->tags && count($project->tags) > 0)
+                <h5>Tags</h5>
                 @foreach ($project->tags as $tag)
                     <span>{{ $tag->name }}</span>
                 @endforeach
             @endif
         </div>
 
-        <img src="{{ asset('storage/' . $project->cover_image) }}" class="my-3">
+        {{-- <img src="{{ asset('storage/' . $project->cover_image) }}" class="my-3"> --}}
         <div>
             @if ($project->cover_image)
+                <img src="{{ asset('storage/' . $project->cover_image) }}" class="my-3">
+            @endif
+
+
+            {{-- @if ($project->cover_image)
                 <img src="{{ asset('storage/' . $project->cover_image) }}" alt="">
             @else
                 <img src="https://picsum.photos/id/20/1920/1080" alt="">
-            @endif
+            @endif --}}
         </div>
         @include('partials.modal')
     </div>

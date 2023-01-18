@@ -130,13 +130,13 @@ class ProjectController extends Controller
             $path = Storage::disk('public')->put('project_images', $request->cover_image);
             $form_data['cover_image'] = $path;
         }
-        $project->update($form_data);
 
         if ($request->has('tags')) {
             $project->tags()->sync($request->tags);
         } else {
             $project->tags()->sync([]);
         }
+        $project->update($form_data);
 
         return redirect()->route('admin.projects.index')->with('message', "Hai aggiornato $project->title correttamente!");
     }
